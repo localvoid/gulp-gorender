@@ -75,9 +75,9 @@ module.exports = function (options) {
     }
 
     if (file.isStream()) {
-			this.emit('error', new gutil.PluginError('gulp-gorender', 'Streaming not supported'));
-			return cb();
-		}
+      this.emit('error', new gutil.PluginError('gulp-gorender', 'Streaming not supported'));
+      return cb();
+    }
 
     var filePath = file.relative;
     var dataPath = getDataFilePath(options.data, filePath);
