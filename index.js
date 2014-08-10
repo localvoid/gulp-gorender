@@ -25,7 +25,7 @@ function compareLastModifiedTime(options) {
       if (err) {
         if (err.code !== 'ENOENT') {
           stream.emit('error', new gutil.PluginError('gulp-gorender', err, {
-            filename: sourceFile.path
+            fileName: sourceFile.path
           }));
         } else {
           stream.push(sourceFile);
@@ -46,7 +46,7 @@ function compareLastModifiedTime(options) {
         if (err) {
           if (err.code !== 'ENOENT') {
             stream.emit('error', new gutil.PluginError('gulp-gorender', err, {
-              filename: dataPath
+              fileName: dataPath
             }));
 
             stream.push(sourceFile);
@@ -86,7 +86,7 @@ module.exports = function (options) {
       if (err) {
         if (err.code !== 'ENOENT') {
           this.emit('error', new gutil.PluginError('gulp-gorender', err, {
-            filename: dataPath
+            fileName: dataPath
           }));
         }
         cb();
@@ -110,7 +110,7 @@ module.exports = function (options) {
 
       gorender.on('error', function (err) {
         this.emit('error', new gutil.PluginError('gulp-gorender', err, {
-          filename: file.path
+          fileName: file.path
         }));
         cb();
       }.bind(this));
@@ -125,7 +125,7 @@ module.exports = function (options) {
           this.push(file);
         } else if (code !== 0) {
           this.emit('error', new gutil.PluginError('gulp-gorender', 'gorender failed: ' + error, {
-            filename: file.path
+            fileName: file.path
           }));
         }
         cb();
