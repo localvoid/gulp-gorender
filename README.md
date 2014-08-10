@@ -17,7 +17,7 @@ You also need to have [gorender](http://github.com/localvoid/gorender) installed
 var gulp = require('gulp');
 var gorender = require('gulp-gorender');
 
-var SRC = 'src/*.js';
+var SRC = 'src/*.html';
 var DEST = 'dist';
 
 gulp.task('default', function () {
@@ -36,6 +36,7 @@ gulp.task('default', function () {
 ##### data
 
 Type: `String`
+Default: `data`
 
 The data directory.
 
@@ -44,4 +45,13 @@ Data files should be in JSON format.
 
 ## [gulp-changed](https://www.npmjs.org/package/gulp-changed) comparator
 
-`gorender.compareLastModifiedTime` checks for data dependencies.
+`gorender.compareLastModifiedTime(options)` checks for data dependencies.
+
+#### options
+
+##### data
+
+Type: `String`
+Default: `data`
+
+The data directory.
