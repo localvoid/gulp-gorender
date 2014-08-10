@@ -1,6 +1,6 @@
 {
   "name": "gulp-gorender",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Golang text.template renderer",
   "license": "MIT",
   "repository": "localvoid/gulp-gorender",
