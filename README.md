@@ -1,6 +1,9 @@
 # [gulp](http://gulpjs.com)-gorender
 
-> [Gulp](http://gulpjs.com) plugin to render files with [Go](http://golang.org) [text.template](http://golang.org/pkg/text/template/) template engine.
+> [Gulp](http://gulpjs.com) plugin to render files with
+> [Go](http://golang.org)
+> [text.Template](http://golang.org/pkg/text/template/) template
+> engine.
 
 ## Install
 
@@ -8,7 +11,8 @@
 $ npm install --save-dev gulp-gorender
 ```
 
-You also need to have [gorender](http://github.com/localvoid/gorender) installed.
+You also need to have [gorender](http://github.com/localvoid/gorender)
+installed.
 
 
 ## Usage
@@ -35,7 +39,7 @@ gulp.task('default', function () {
 
 ##### data
 
-Type: `String`
+Type: `String`  
 Default: `data`
 
 The data directory.
@@ -43,15 +47,17 @@ The data directory.
 Data files should be in JSON format.
 
 
-## [gulp-changed](https://www.npmjs.org/package/gulp-changed) comparator
+## [gulp-changed](https://www.npmjs.org/package/gulp-changed)
+   comparator
 
-`gorender.compareLastModifiedTime(options)` checks for data dependencies.
+`gorender.compareLastModifiedTime(options)` checks for data
+dependencies.
 
 #### options
 
 ##### data
 
-Type: `String`
+Type: `String`  
 Default: `data`
 
 The data directory.
