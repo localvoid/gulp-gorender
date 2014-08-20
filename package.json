@@ -1,13 +1,13 @@
 {
   "name": "gulp-gorender",
-  "version": "0.1.1",
-  "description": "Golang text.template renderer",
+  "version": "0.2.0",
+  "description": "Golang text.Template renderer",
   "license": "BSD",
-  "repository": "localvoid/gulp-gorender",
+  "repository": "https://github.com/localvoid/gulp-gorender",
   "author": {
     "name": "Boris Kaul",
     "email": "localvoid@gmail.com",
-    "url": "http://github.com/localvoid"
+    "url": "https://github.com/localvoid"
   },
   "engines": {
     "node": ">=0.10.0"
