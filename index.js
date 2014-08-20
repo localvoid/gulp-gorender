@@ -65,7 +65,8 @@ function compareLastModifiedTime(options) {
 
 module.exports = function (options) {
   options = _.assign({
-    data: 'data'
+    data: 'data',
+    html: false
   }, options);
 
   return through.obj(function (file, enc, cb) {
@@ -93,7 +94,13 @@ module.exports = function (options) {
         return;
       }
 
-      var gorender = spawn('gorender', ['-d', dataPath, file.path]);
+      var gorender;
+
+      if (options.html) {
+        gorender = spawn('gorender', ['-html', '-d', dataPath, file.path]);
+      } else {
+        gorender = spawn('gorender', ['-d', dataPath, file.path]);
+      }
       gorender.stdout.setEncoding('utf8');
       gorender.stderr.setEncoding('utf8');
 
@@ -121,7 +128,11 @@ module.exports = function (options) {
           file.contents = new Buffer(result);
           this.push(file);
         } else if (code === 65) {
-          file.contents = new Buffer(_.template(ERROR_HTML_TEMPLATE, {message: error}));
+          if (options.html) {
+            file.contents = new Buffer(_.template(ERROR_HTML_TEMPLATE, {message: error}));
+          } else {
+            file.contents = new Buffer(error);
+          }
           this.push(file);
         } else if (code !== 0) {
           this.emit('error', new gutil.PluginError('gulp-gorender', 'gorender failed: ' + error, {

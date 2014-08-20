@@ -25,7 +25,7 @@ var SRC = 'src/*.html';
 var DEST = 'dist';
 
 gulp.task('default', function () {
-	return gulp.src(SRC)
+	return gulp.src(SRC, {html: true})
 		.pipe(gorender({data: 'data'}))
 		.pipe(gulp.dest(DEST));
 });
@@ -45,6 +45,14 @@ Default: `data`
 The data directory.
 
 Data files should be in JSON format.
+
+##### html
+
+Type: `Boolean`  
+Default: `false`
+
+Use [html.Template](http://golang.org/pkg/text/template/) template
+package.
 
 
 ## [gulp-changed](https://www.npmjs.org/package/gulp-changed)
