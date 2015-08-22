@@ -1,6 +1,6 @@
 {
   "name": "gulp-gorender",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Golang text.Template renderer",
   "license": "BSD",
   "repository": "https://github.com/localvoid/gulp-gorender",
@@ -9,14 +9,6 @@
     "email": "localvoid@gmail.com",
     "url": "https://github.com/localvoid"
   },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "scripts": {
-  },
-  "files": [
-    "index.js"
-  ],
   "keywords": [
     "gulpplugin",
     "golang",
@@ -27,11 +19,8 @@
     "compiler"
   ],
   "dependencies": {
-    "lodash": "^2.4.1",
-    "gulp-util": "^3.0.0",
-    "through2": "^0.6.0",
+    "gulp-util": "^3.0.6",
+    "through2": "^2.0.0",
     "win-spawn": "^2.0.0"
-  },
-  "devDependencies": {
   }
 }
