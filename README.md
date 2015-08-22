@@ -35,7 +35,6 @@ gulp.task('default', function () {
 ##### data
 
 Type: `String`  
-Default: `data`
 
 The data directory.
 

@@ -14,7 +14,7 @@ function getDataFilePath(dataPath, filePath) {
 
 module.exports = function (options) {
   options = options || {};
-  options.data = options.data || 'data';
+  options.data = options.data || null;
   options.include = options.include || null;
   options.base = options.base || null;
   options.html = options.html || false;
@@ -31,20 +31,14 @@ module.exports = function (options) {
     }
 
     var filePath = file.relative;
-    var dataPath = getDataFilePath(options.data, filePath);
 
-    fs.stat(dataPath, function(err, dataStat) {
-      if (err) {
-        if (err.code !== 'ENOENT') {
-          this.emit('error', new gutil.PluginError('gulp-gorender', err, {
-            fileName: dataPath
-          }));
-        }
-        return cb();
+    var compile = function(data) {
+      var args = [];
+
+      if (data) {
+        args.push('-d');
+        args.push(dataPath);
       }
-
-      var args = ['-d', dataPath];
-
       if (options.include) {
         args.push('-i');
         args.push(options.include);
@@ -101,6 +95,15 @@ module.exports = function (options) {
         }
         cb();
       }.bind(this));
-    }.bind(this));
+    }.bind(this);
+
+    if (options.data) {
+      var dataPath = getDataFilePath(options.data, filePath);
+      fs.stat(dataPath, function(err, dataStat) {
+        compile(err ? null: dataPath);
+      }.bind(this));
+    } else {
+      compile(null);
+    }
   });
 };
