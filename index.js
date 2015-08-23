@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var gutil = require('gulp-util');
 var through = require('through2');
-var spawn = require('win-spawn');
+var child = requie('child_process');
 
 function getDataFilePath(dataPath, filePath) {
   return path.join(dataPath, filePath.slice(0, -path.extname(filePath).length)) + '.json';
@@ -50,7 +50,7 @@ module.exports = function (options) {
       }
       args.push(file.path);
 
-      var gorender = spawn('gorender', args);
+      var gorender = child.spawn('gorender', args);
 
       gorender.stdout.setEncoding('utf8');
       gorender.stderr.setEncoding('utf8');
