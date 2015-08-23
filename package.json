@@ -1,9 +1,8 @@
 {
   "name": "gulp-gorender",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Golang text.Template renderer",
-  "license": "BSD",
-  "repository": "https://github.com/localvoid/gulp-gorender",
+  "license": "MIT",
   "author": {
     "name": "Boris Kaul",
     "email": "localvoid@gmail.com",
@@ -12,12 +11,22 @@
   "keywords": [
     "gulpplugin",
     "golang",
+    "go",
     "template",
     "rewriting",
     "transformation",
     "rendering",
     "compiler"
   ],
+  "homepage": "https://github.com/localvoid/gulp-gorender",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/localvoid/gulp-gorender"
+  },
+  "bugs": {
+    "url": "https://github.com/localvoid/gulp-gorender/issues"
+  },
+  "github": "https://github.com/localvoid/gulp-gorender",
   "dependencies": {
     "gulp-util": "^3.0.6",
     "through2": "^2.0.0",
