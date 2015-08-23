@@ -6,8 +6,6 @@ var gutil = require('gulp-util');
 var through = require('through2');
 var spawn = require('win-spawn');
 
-var ERROR_HTML_TEMPLATE = '<!DOCTYPE html><html lang="en"><body><%- message %></body></html>';
-
 function getDataFilePath(dataPath, filePath) {
   return path.join(dataPath, filePath.slice(0, -path.extname(filePath).length)) + '.json';
 }
@@ -81,8 +79,9 @@ module.exports = function (options) {
           this.push(file);
         } else if (code === 65) {
           if (options.html) {
-            file.contents = new Buffer(_.template(ERROR_HTML_TEMPLATE,
-                                                  {message: error.join('')}));
+            file.contents = new Buffer('<!DOCTYPE html><html lang="en"><body>' +
+                                       error.join('') +
+                                       '</body></html>');
           } else {
             file.contents = new Buffer(error.join(''));
           }
