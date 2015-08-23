@@ -4,18 +4,19 @@ var fs = require('fs');
 var path = require('path');
 var gutil = require('gulp-util');
 var through = require('through2');
-var child = requie('child_process');
+var child = require('child_process');
 
 function getDataFilePath(dataPath, filePath) {
   return path.join(dataPath, filePath.slice(0, -path.extname(filePath).length)) + '.json';
 }
 
-module.exports = function (options) {
+module.exports = function(options) {
   options = options || {};
   options.data = options.data || null;
   options.include = options.include || null;
   options.base = options.base || null;
   options.html = options.html || false;
+  options.executable = options.executable || 'gorender';
 
   return through.obj(function(file, enc, cb) {
     if (file.isNull()) {
@@ -34,46 +35,38 @@ module.exports = function (options) {
       var args = [];
 
       if (data) {
-        args.push('-d');
-        args.push(dataPath);
+        args.push('-d', dataPath);
       }
       if (options.include) {
-        args.push('-i');
-        args.push(options.include);
+        args.push('-i', options.include);
       }
       if (options.base) {
-        args.push('-b');
-        args.push(options.base);
+        args.push('-b', options.base);
       }
       if (options.html) {
         args.push('-html');
       }
       args.push(file.path);
 
-      var gorender = child.spawn('gorender', args);
+      var process = child.spawn(options.executable, args);
 
-      gorender.stdout.setEncoding('utf8');
-      gorender.stderr.setEncoding('utf8');
+      process.stdout.setEncoding('utf8');
+      process.stderr.setEncoding('utf8');
 
       var result = [];
       var error = [];
 
-      gorender.stdout.on('data', function (data) {
-        result.push(data);
-      });
+      process.stdout.on('data', function(data) { result.push(data); });
+      process.stderr.on('data', function(data) { error.push(data); });
 
-      gorender.stderr.on('data', function (data) {
-        error.push(data);
-      });
-
-      gorender.on('error', function (err) {
+      process.on('error', function(err) {
         this.emit('error', new gutil.PluginError('gulp-gorender', err, {
           fileName: file.path
         }));
         cb();
       }.bind(this));
 
-      gorender.on('close', function (code) {
+      process.on('close', function(code) {
         if (code === 0) {
           file.contents = new Buffer(result.join(''));
           this.push(file);
