@@ -1,6 +1,6 @@
 # gulp-gorender
 
-[Gulp](http://gulpjs.com) plugin to render files with
+[Gulp](http://gulpjs.com) plugin for rendering files with
 [Go](http://golang.org)
 [text.Template](http://golang.org/pkg/text/template/) template engine.
 

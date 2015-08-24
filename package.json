@@ -1,7 +1,7 @@
 {
   "name": "gulp-gorender",
   "version": "0.3.3",
-  "description": "Golang text.Template renderer",
+  "description": "Gulp plugin for rendering files with Go text.Template template engine",
   "license": "MIT",
   "author": {
     "name": "Boris Kaul",
